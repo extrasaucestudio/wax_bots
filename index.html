@@ -33,7 +33,7 @@
     <div class="name"></div>
 </div>
 
-<!-- <form>
+<form>
     <label>
         Collection to watch (* for all)
         <input name="collection" id="collection" value="*" />
@@ -43,14 +43,14 @@
         <input name="endpoint" id="endpoint" value="ws://127.0.0.1:3030" />
     </label>
     <input type="submit" onclick="return start()" />
-</form> -->
+</form>
 
 
 <script>
     let ws_index = 0;
     const port = 3030;
     function show_sale(data){
-        // console.log(data);
+        console.log(data);
         const sale = document.getElementById('sale');
         const msg = `${data.buyer} bought ${data.asset.name} for ${data.quantity}`;
         const image_url = `http://ipfs.io/ipfs/${data.asset.data.img}`;
@@ -74,7 +74,7 @@
 
 
 
-        // $.toast({ text: msg, position: 'top-left', showHideTransition: 'plain', allowToastClose: false });
+        $.toast({ text: msg, position: 'top-left', showHideTransition: 'plain', allowToastClose: false });
     }
 
     function start(endpoint, collection){
@@ -90,7 +90,7 @@
             const ws = new WebSocket(endpoint, 'echo-protocol');
             ws.onmessage = (msg) => {
                 const msg_data = JSON.parse(msg.data);
-                // console.log(msg_data);
+                console.log(msg_data);
 
                 if (msg_data.type === 'sale'){
                     show_sale(msg_data.data);
@@ -107,7 +107,7 @@
 
     document.addEventListener("DOMContentLoaded", function(){
         const url = new URL(document.URL);
-        // console.log(url);
+        console.log(url);
         let collection = '*';
         if (url.search){
             const url_parts = url.search.substr(1).split('&');
